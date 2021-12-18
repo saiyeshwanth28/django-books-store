@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 </head>
 <body>
+	{% csrf_token %}
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <a class="navbar-brand" href="{% url 'store' %}">Book Store</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,10 +22,24 @@
 	      <li class="nav-item active">
 	        <a class="nav-link" href="{% url 'store' %}">Home <span class="sr-only">(current)</span></a>
 	      </li>
+			<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
 
 	    </ul>
+		   <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="get">
+      <input class="form-control mr-sm-2" type="search" name="search_query" placeholder="Search" aria-label="Search">
+      <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 	    <div class="form-inline my-2 my-lg-0">
-	     	<a href="#"class="btn btn-warning">Login</a>
+	     	<a href="/login"class="btn btn-warning">Login</a>
 
 	     	<a href="{% url 'cart' %}">
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
