@@ -2,34 +2,35 @@
 {% load static %}
 {% block content %}
     <div class="row">
+        {% for product in products %}
         <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/book1.png' %}">
+            <img class="thumbnail" src="{{product.image.url}}">
             <div class="box-element product"></div>
-            <h6><strong>Product</strong></h6>
+            <h6><strong>{{product.name}}</strong></h6>
             <hr>
             <button class="btn btn-outline-secondary add-btn">Add to cart</button>
             <a class="btn btn-outline-success" href="#">View</a>
-            <h4 style="display: inline-block;float: right">Rs.500</h4>
+            <h4 style="display: inline-block;float: right">Rs.{{product.price}}</h4>
         </div>
+        {% endfor %}
 
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/book2.png' %}">
-            <div class="box-element product"></div>
-            <h6><strong>Product</strong></h6>
-            <hr>
-            <button class="btn btn-outline-secondary add-btn">Add to cart</button>
-            <a class="btn btn-outline-success" href="#">View</a>
-            <h4 style="display: inline-block;float: right">Rs.599</h4>
-        </div>
+        <br>
+        <br>
+        <div class="wrapper">
+            <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if products.has_previous %}
+                <li class="page-item"><a href="?page={{products.previous_page_number}}" class="page-link">&#10094; prev</a></li>
+                {% endif %}
+                {% for page in paginator.page_range %}
+                    <li class="page-item"><a href="?page={{page}}" class="page-link">{{page}}</a></li>
+                {% endfor %}
 
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/book3.png' %}">
-            <div class="box-element product"></div>
-            <h6><strong>Product</strong></h6>
-            <hr>
-            <button class="btn btn-outline-secondary add-btn">Add to cart</button>
-            <a class="btn btn-outline-success" href="#">View</a>
-            <h4 style="display: inline-block;float: right">Rs.400</h4>
+                {% if products.has_next %}
+                <li class="page-item"><a href="?page={{products.next_page_number}}" class="page-link">Next &#10095;</a></li>
+                {% endif %}
+            </ul>
+                </nav>
         </div>
     </div>
 {% endblock content %}
