@@ -1,5 +1,10 @@
 from django.contrib import admin
-from task.models import book_details
+from task.models import *
 # Register your models here.
 
-admin.site.register(book_details)
+
+admin.site.register(Customer)
+admin.site.register(Product)
+admin.site.register(Order)
+admin.site.register(OrderItem)
+admin.site.register(ShippingAddress)
