@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 def home(request):
     return render(request,"main.html")
 
-def registerPage(request):
+"""def registerPage(request):
     if request.method=="POST":
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -35,7 +35,7 @@ def loginPage(request):
         for user in users:
             if user.username == username and user.password== password:
                 return redirect('store')
-    return render(request,'login.html')
+    return render(request,'login.html')"""
 
 def logout(request):
     return redirect('login')
@@ -119,7 +119,7 @@ def detail(request,id):
     return render(request,'details.html',{'product_object':product_object})
 
 
-"""def registerPage(request):
+def registerPage(request):
     form = CreateUserForm()
     if request.method=="POST":
         form = CreateUserForm(request.POST)
@@ -154,4 +154,4 @@ def loginPage(request):
                 login(request, user)
                 return redirect('store')
         context = {}
-        return render(request, 'login.html',context)"""
+        return render(request, 'login.html',context)
